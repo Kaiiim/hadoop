@@ -109,12 +109,7 @@ EXPOSE 50070
 COPY ./start.sh ./
 CMD  ./start.sh
 
-# ssh localhost
-# 1 - chercher à savoir comment on redigire le tout 
-# 2 - pour le faire afficher sur l'ecran de l'ordi
-# 3 - passwd root faire le mot de passe  
-# /etc/init.d/ssh restart
-# 4 - faire le truc des clef rsa changer les droits de id_rsa  
-# /usr/local/hadoop/sbin -> start-all.sh
+
+# docker run -it --rm -h NameNode --add-host Namenode:127.0.1.1 --name karimh1 -p 50070:50070 hadoop-v1
 # 
 #docker run -it --rm -h NameNode --add-host Namenode:127.0.1.1 --name karimh1 hadoop1
