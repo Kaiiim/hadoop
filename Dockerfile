@@ -95,28 +95,62 @@ COPY ./hadoop_config/hadoop-env.sh \
      ./hadoop_config/masters \
      ./hadoop_config/hdfs-site.xml /usr/local/hadoop/etc/hadoop/
 
-### formatage d'hadoop
 
-WORKDIR /usr/local/hadoop/bin
+##########################################
+# création et configuration datanodes 1,2,3 
+
+
+RUN mkdir -p /usr/local/hadoop_work/hdfs/datanode1 && \
+    mkdir -p /usr/local/hadoop_work/hdfs/datanode2 && \
+    mkdir -p /usr/local/hadoop_work/hdfs/datanode3
+
+
+COPY ./hadoop_config/datanode1.xml \
+     ./hadoop_config/datanode2.xml \
+     ./hadoop_config/datanode3.xml  /usr/local/hadoop/etc/hadoop/
+
+
+##########################################
+# Voir si ca sert de le garder
+#WORKDIR /usr/local/hadoop/bin
 
 RUN  /source.sh  
-RUN ./hadoop namenode -format 
+#RUN ./hadoop namenode -format 
 
-WORKDIR /usr/local/hadoop/sbin
+#WORKDIR /usr/local/hadoop/sbin
 
-EXPOSE 50070
 
-EXPOSE 50010 50020  50075 50090 8020 9000
+##########################################
+EXPOSE 50070 50012 50013 50014
+EXPOSE 50010 50020 50075 50090 8020 9000
 # Mapred ports
 EXPOSE 10020 19888
-#Yarn ports
+# Yarn ports
 EXPOSE 8030 8031 8032 8033 8040 8042 8088
-#Other ports
+# Other ports
 EXPOSE 49707 2122
+##########################################
 
-COPY ./start.sh ./
-RUN chmod 777 ./start.sh
-RUN  ./start.sh
+#COPY ./start.sh ./
+#RUN chmod 777 ./start.sh
+#RUN  ./start.sh
+
+# au lancement 
+# -> service ssh restart
+# -> ssh localhost 
+
+# -> /usr/local/hadoop/bin
+# ./hadoop namenode -format
+# namenode
+# 
+## /usr/local/hadoop/sbin
+# ./start-all.sh 
+
+
+### lancer les datanodes
+# ./bin/hdfs datanode -conf ./etc/hadoop/datanode1.xml
+# ./bin/hdfs datanode -conf ./etc/hadoop/datanode2.xml
+# ./bin/hdfs datanode -conf ./etc/hadoop/datanode3.xml
 
 
 # docker run -it --rm -h NameNode --add-host Namenode:127.0.1.1 --name karimh1 -p 50070:50070 hadoop-v1

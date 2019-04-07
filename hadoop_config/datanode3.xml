@@ -1,0 +1,18 @@
+<configuration>
+    <property>
+        <name>dfs.datanode.address</name>
+        <value>0.0.0.0:50013</value>
+    </property>
+    <property>
+        <name>dfs.datanode.http.address</name>
+        <value>0.0.0.0:50077</value>
+    </property>
+    <property>
+        <name>dfs.datanode.ipc.address</name>
+        <value>0.0.0.0:50022</value>
+    </property>
+    <property>
+        <name>dfs.data.dir</name>
+        <value>/usr/local/hadoop_work/hdfs/datanode3/</value>
+    </property>
+</configuration>
