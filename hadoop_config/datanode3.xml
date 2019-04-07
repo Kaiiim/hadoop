@@ -5,11 +5,11 @@
     </property>
     <property>
         <name>dfs.datanode.http.address</name>
-        <value>0.0.0.0:50077</value>
+        <value>0.0.0.0:50078</value>
     </property>
     <property>
         <name>dfs.datanode.ipc.address</name>
-        <value>0.0.0.0:50022</value>
+        <value>0.0.0.0:50023</value>
     </property>
     <property>
         <name>dfs.data.dir</name>
