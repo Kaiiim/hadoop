@@ -9,11 +9,11 @@ docker run -it --rm -h NameNode --add-host Namenode:127.0.1.1 --name karimh1  -p
 
 Une fois le docker lancé : 
 
-service ssh restart && ssh localhost 
-cd /usr/local/hadoop && ./bin/hadoop namenode -format
-./bin/hdfs namenode
-./bin/hdfs datanode -conf /usr/local/hadoop/etc/hadoop/datanode1.xml
+service ssh restart && ssh localhost   
+cd /usr/local/hadoop && ./bin/hadoop namenode -format  
+./bin/hdfs namenode  
+./bin/hdfs datanode -conf /usr/local/hadoop/etc/hadoop/datanode1.xml 
 
 ## Pour la V.2 préparer les 2 autres datanodes
-./bin/hdfs datanode -conf /usr/local/hadoop/etc/hadoop/datanode2.xml
+./bin/hdfs datanode -conf /usr/local/hadoop/etc/hadoop/datanode2.xml  
 ./bin/hdfs datanode -conf /usr/local/hadoop/etc/hadoop/datanode2.xml
