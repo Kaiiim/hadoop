@@ -1,14 +1,13 @@
-# demande de connextion ssh
+## pour lancer le word count
+# les lignes ci dessous servent à titre d'exemple
+# Pour lancer le word count
 
-/etc/init.d/ssh start
-ssh localhost
 
-##################################
-cd /usr/local/hadoop/sbin
-hadoop namenode -format
+# lancement de dfs et yarn
+
+
 start-dfs.sh
 start-yarn.sh
-
 
 ##################################
 
