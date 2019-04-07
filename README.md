@@ -1,5 +1,6 @@
 # installation-hadoop-Namenode-1-datanode--docker
 
+
 Pour le lancer :  
 Dans le repertoire ou le Dockerfile se trouve . 
 
@@ -10,10 +11,32 @@ docker run -it --rm -h NameNode --add-host Namenode:127.0.1.1 --name karimh1  -p
 Une fois le docker lancé : 
 
 service ssh restart && ssh localhost   
+
+## Formattage et lancement du namenode
 cd /usr/local/hadoop && ./bin/hadoop namenode -format  
 ./bin/hdfs namenode  
-./bin/hdfs datanode -conf /usr/local/hadoop/etc/hadoop/datanode1.xml 
 
-## Pour la V.2 préparer les 2 autres datanodes
-./bin/hdfs datanode -conf /usr/local/hadoop/etc/hadoop/datanode2.xml  
-./bin/hdfs datanode -conf /usr/local/hadoop/etc/hadoop/datanode2.xml
+## Formattage et lancement des datanodes  
+Sur une nouvelle fenetre:   
+docker ps -a.  
+
+Recuperer <id> . ouvir 3 fenetres, pour chacun des datanodes  
+docker exec -it <ID-Container>  bash (Sur les 3 fenetres)
+
+/usr/local/hadoop/bin/hdfs datanode start 
+
+## lancement des datanodes . 
+
+cd /usr/local/hadoop && ./bin/hdfs datanode -conf ./etc/hadoop/datanode1.xml   
+cd /usr/local/hadoop && ./bin/hdfs datanode -conf ./etc/hadoop/datanode2.xml  
+cd /usr/local/hadoop && ./bin/hdfs datanode -conf ./etc/hadoop/datanode3.xml   
+
+
+#### Aide. Se placer dans dossier hadoop . 
+./bin/hdfs dfsadmin -report     
+./bin/hdfs fcsk /   
+./sbin/start-all.sh  
+ 
+ 
+### Changer valeur IP des datanodes
+./bin/hdfs datanode -D "dfs.datanode.address=50013" -conf ./etc/hadoop/datanode1.xml   
